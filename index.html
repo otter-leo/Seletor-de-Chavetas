@@ -1,148 +1,391 @@
 <!DOCTYPE html>
-<html lang="pt"></html>
+<html lang="pt-BR">
 
-<html>
-  <head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#4da6ff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Seletor de chavetas</title>
-    <meta name="theme-color" content="#4da6ff" />
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
+
+    <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
 
 <div class="ctt2 box1">
-	<h1>Seletor de chavetas</h1>
-	<div> 
-		<div class="ct1">
-			<div>
-				<div class="ctt1" onchange="calc1()">
-					<div>
-						<h2>Entrada de valores</h2>
-						<hr>
-						<div class="ctt4">ØEixo/Furo
-							<input class="txt1" id="dia1" placeholder="8 à 200mm" onchange="calc1()"/>
-						</div>
-						<div class="ctt4">Tipo
-							<select class="txt1" id="tpSel" onchange="selTp()">
-								<option class="txt1" value="A" selected>A</option>
-								<option class="txt1" value="B">B</option>
-								<option class="txt1" value="C">C</option>
-							</select>
-						</div>
-						<div class="ctt4">Comprimento
-							<input class="txt1" id="comp"placeholder="15 à 200mm"onchange="calc1()"/>
-						</div>
-						<div class="ctt4">Variação comprimento
-							<input
-								class="txt1"
-								id="varCom"
-								placeholder="1 à 15mm"
-								onchange="calc1()"
-							/>
-						</div>							
-						<br>
-						<br>
-					</div>
-					<div class="vline ctt2"></div>
-					<div>
-						<h2>Valores calculado</h2>
-						<hr>
-						<div class="ctt4">Medidas chaveta
-							<span class="txt1" id="valChavPerf" placeholder="" onchange="calc1()"></span>
-						</div>
-						<div class="ctt4">Largura(b)
-							<span class="txt1" id="larg" placeholder=""></span>
-						</div>
-						<div class="ctt4" >Altura(h)
-							<span class="txt1" id="alt" placeholder=""></span>
-						</div>
-						<div class="ctt4">t1 (Eixo)
-							<span class="txt1" id="t1" placeholder=""></span>
-						</div>
-						<div class="ctt4">t2 (Cubo)
-							<span class="txt1" id="t2" placeholder=""></span>
-						</div>
-						<div class="ctt4">Eixo (d-t1)
-							<span class="txt1" id="calcEixo" placeholder=""></span>
-						</div>							
-						<div class="ctt4">Cubo (d+t2)
-							<span class="txt1" id="calcCubo" placeholder=""></span>
-						</div>						
-					</div>
 
-					<div class="vline ctt2"></div>
-					<div>
-						<div>
-							<h3>Carregar planilha</h3>
-							<hr>
-							<br>
-							<div class="box2">
-								Formato compativeis: .csv
-								<input class="ipt1" type="file" id="csvFileInput" accept=".csv" />
-							</div>	
-							<br>
-							<br>
-							<h3>Pesquisar</h3>						
-							<hr>
-							<div class="ctt5">C X L
-								<span class="txt1" id="valChavPerf2" onchange="calc1()"></span>
-							</div>
-							<div class="ctt5">Comprimento
-								<span class="txt1" id="comp2" placeholder="Length"></span>
-							</div>
-							<div class="ctt5">Tipo
-								<span class="txt1" id="tp"></span>
-							</div>
+    <h1>Seletor de chavetas</h1>
+
+    <div>
+
+        <!-- ================================================= -->
+        <!-- ENTRADA / CÁLCULOS -->
+        <!-- ================================================= -->
+
+        <div class="ct1">
+
+            <div class="ctt1">
+
+                <!-- ========================================= -->
+                <!-- ENTRADA DE VALORES -->
+                <!-- ========================================= -->
+
+                <div>
+
+                    <h2>Entrada de valores</h2>
+                    <hr>
+
+                    <!-- Diâmetro -->
+                    <div class="ctt4">
+                        Ø Eixo/Furo
+
+                        <input
+                            class="txt1"
+                            id="dia1"
+                            type="number"
+                            step="0.1"
+                            min="0"
+                            placeholder="8 à 200 mm"
+                            onchange="calc1()"
+                        >
+                    </div>
+
+                    <!-- Tipo -->
+                    <div class="ctt4">
+                        Tipo
+
+                        <select
+                            class="txt1"
+                            id="tpSel"
+                            onchange="selTp()"
+                        >
+                            <option value="A" selected>A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </div>
+
+                    <!-- Comprimento -->
+                    <div class="ctt4">
+                        Comprimento
+
+                        <input
+                            class="txt1"
+                            id="comp"
+                            type="number"
+                            step="0.1"
+                            min="0"
+                            placeholder="15 à 200 mm"
+                            onchange="selTp()"
+                        >
+                    </div>
+
+                    <!-- Variação -->
+                    <div class="ctt4">
+                        Variação comprimento
+
+                        <input
+                            class="txt1"
+                            id="varCom"
+                            type="number"
+                            step="0.1"
+                            min="0"
+                            placeholder="1 à 15 mm"
+                            onchange="selTp()"
+                        >
+                    </div>
+
+                    <br>
+                    <br>
+
+                </div>
 
 
-							<input type="text" id="profileFilter" placeholder="Profile">
-							<input type="text" id="lengthFilter" placeholder="Length">
-							<input type="text" id="typeFilter" placeholder="Type">
-						</div>
-						<div class="ctt2">
-							<button class="btn1" onclick="filterTable()">Filtrar valores compativeis</button>
-							<button class="btn1" onclick="resetTable()">Limpar pesquisa</button>
-						</div>				
-					</div>		
-					<div class="vline ctt2"></div>			
-					<div>
-						<h3>Chavetas cadastradas:</h3>
-						<br>
-					<div class="table-container">
-					<div>
-						<table id="dataTable">
-							<thead>
-								<tr>
-									<th>Serial Number</th>
-									<th>Profile</th>
-									<th>Length</th>
-									<th>Type</th>
-								</tr>								
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-					</div>					
-				</div>
-			</div>
-		</div>  
+                <!-- ========================================= -->
+                <!-- LINHA VERTICAL -->
+                <!-- ========================================= -->
 
-		<div class="ctt3">
-			<br>
-			<br>
-			<h1>Tabela ABNT chavetas</h1>
-			<hr>
-			<img src="https://abecom.com.br/wp-content/uploads/2021/09/Tabela-para-chaveta-paralela.jpg" style="width: 80%; border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0); object-fit: cover"/>
-			<br>
-		</div>	    
+                <div class="vline ctt2"></div>
 
-	</div>
-</div>	
+
+                <!-- ========================================= -->
+                <!-- VALORES CALCULADOS -->
+                <!-- ========================================= -->
+
+                <div>
+
+                    <h2>Valores calculados</h2>
+                    <hr>
+
+                    <div class="ctt4">
+                        Medidas chaveta
+
+                        <span
+                            class="txt1"
+                            id="valChavPerf"
+                        ></span>
+                    </div>
+
+                    <div class="ctt4">
+                        Largura (b)
+
+                        <span
+                            class="txt1"
+                            id="larg"
+                        ></span>
+                    </div>
+
+                    <div class="ctt4">
+                        Altura (h)
+
+                        <span
+                            class="txt1"
+                            id="alt"
+                        ></span>
+                    </div>
+
+                    <div class="ctt4">
+                        t1 (Eixo)
+
+                        <span
+                            class="txt1"
+                            id="t1"
+                        ></span>
+                    </div>
+
+                    <div class="ctt4">
+                        t2 (Cubo)
+
+                        <span
+                            class="txt1"
+                            id="t2"
+                        ></span>
+                    </div>
+
+                    <div class="ctt4">
+                        Eixo (d - t1)
+
+                        <span
+                            class="txt1"
+                            id="calcEixo"
+                        ></span>
+                    </div>
+
+                    <div class="ctt4">
+                        Cubo (d + t2)
+
+                        <span
+                            class="txt1"
+                            id="calcCubo"
+                        ></span>
+                    </div>
+
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- LINHA VERTICAL -->
+                <!-- ========================================= -->
+
+                <div class="vline ctt2"></div>
+
+
+                <!-- ========================================= -->
+                <!-- CSV / PESQUISA -->
+                <!-- ========================================= -->
+
+                <div>
+
+                    <h3>Carregar planilha</h3>
+
+                    <hr>
+
+                    <br>
+
+                    <div class="box2">
+
+                        Formato compatível: .csv
+
+                        <input
+                            class="ipt1"
+                            type="file"
+                            id="csvFileInput"
+                            accept=".csv"
+                        >
+
+                    </div>
+
+                    <br>
+                    <br>
+
+
+                    <h3>Pesquisa</h3>
+
+                    <hr>
+
+
+                    <!-- Perfil -->
+                    <div class="ctt5">
+
+                        Perfil
+
+                        <span
+                            class="txt1"
+                            id="valChavPerf2"
+                        ></span>
+
+                    </div>
+
+
+                    <!-- Comprimento mínimo -->
+                    <div class="ctt5">
+
+                        Comprimento mínimo:
+
+                        <span
+                            class="txt1"
+                            id="compMin"
+                        ></span>
+
+                    </div>
+
+
+                    <!-- Comprimento máximo -->
+                    <div class="ctt5">
+
+                        Comprimento máximo:
+
+                        <span
+                            class="txt1"
+                            id="compMax"
+                        ></span>
+
+                    </div>
+
+
+                    <!-- Tipo -->
+                    <div class="ctt5">
+
+                        Tipo
+
+                        <span
+                            class="txt1"
+                            id="tp"
+                        ></span>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <!-- Botões -->
+                    <div class="ctt2">
+
+                        <button
+                            class="btn1"
+                            onclick="filterTable()"
+                        >
+                            Filtrar valores compatíveis
+                        </button>
+
+                        <button
+                            class="btn1"
+                            onclick="resetTable()"
+                        >
+                            Limpar pesquisa
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- LINHA VERTICAL -->
+                <!-- ========================================= -->
+
+                <div class="vline ctt2"></div>
+
+
+                <!-- ========================================= -->
+                <!-- TABELA -->
+                <!-- ========================================= -->
+
+                <div>
+
+                    <h3>Chavetas cadastradas:</h3>
+
+                    <br>
+
+                    <div class="table-container">
+
+                        <table id="dataTable">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Perfil</th>
+                                    <th>Comprimento</th>
+                                    <th>Tipo</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- TABELA ABNT -->
+        <!-- ================================================= -->
+
+        <div class="ctt3">
+
+            <br>
+            <br>
+
+            <h1>Tabela ABNT chavetas</h1>
+
+            <hr>
+
+            <img
+                src="https://abecom.com.br/wp-content/uploads/2021/09/Tabela-para-chaveta-paralela.jpg"
+                style="
+                    width: 80%;
+                    border-radius: 10px;
+                    border: 1px solid rgba(0,0,0,0);
+                    object-fit: cover;
+                "
+                alt="Tabela ABNT de chavetas"
+            >
+
+            <br>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ======================================================= -->
 
 <script src="script.js"></script>
-<script src="data.js"></script>
 
 </body>
 </html>
